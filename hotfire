@@ -194,6 +194,105 @@
     </div>
 </div>
 
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>养生产品页面</title>
+    <link rel="stylesheet" href="styles.css"> <!-- 样式文件 -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- jQuery -->
+</head>
+<body>
+
+    <!-- 养生产品相关内容 -->
+    <div class="product-details">
+        <h1>养生茶包</h1>
+        <p>享受温暖舒缓的茶时光，舒缓身心，调理健康。</p >
+        <button data-toggle="modal" data-target="#modal1">查看穴位引导</button>
+        <button data-toggle="modal" data-target="#modal2">查看穴位引导</button>
+    </div>
+
+    <!-- 第一个养生穴位引导模态框 -->
+    <div id="modal1" class="modal">
+        <div class="modal-content">
+            <span class="close" data-dismiss="modal">&times;</span>
+            <h2>养生穴位引导 1</h2>
+            <p>点击以下链接查看详细的养生穴位引导视频或动图。</p >
+            点击查看视频或动图
+        </div>
+    </div>
+
+    <!-- 第二个养生穴位引导模态框 -->
+    <div id="modal2" class="modal">
+        <div class="modal-content">
+            <span class="close" data-dismiss="modal">&times;</span>
+            <h2>养生穴位引导 2</h2>
+            <p>点击以下链接查看详细的养生穴位引导视频或动图。</p >
+            点击查看视频或动图
+        </div>
+    </div>
+
+    <!-- 模态框的CSS样式 -->
+    <style>
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0,0,0);
+            background-color: rgba(0,0,0,0.4);
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+
+    <!-- JavaScript部分 -->
+    <script>
+        // 打开模态框的功能
+        $(document).ready(function(){
+            $('[data-toggle="modal"]').click(function(){
+                var target = $(this).data('target');
+                $(target).fadeIn();
+            });
+
+            // 关闭模态框的功能
+            $('.close').click(function(){
+                $(this).closest('.modal').fadeOut();
+            });
+
+            // 点击外部区域关闭模态框
+            $(window).click(function(event) {
+                if ($(event.target).hasClass('modal')) {
+                    $(event.target).fadeOut();
+                }
+            });
+        });
+
 <!-- Bootstrap 5 JS -->
 <script src="https://cdn.bootcdn.net/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 
