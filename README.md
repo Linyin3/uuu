@@ -33,7 +33,6 @@
             padding: 15px;
             border-radius: 5px;
         }
-        /* 每日养生金句样式 */
         #daily-quote {
             background: rgba(255, 255, 255, 0.8);
             padding: 20px;
@@ -46,16 +45,16 @@
             box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
             transition: opacity 1s ease-in-out;
         }
-        /* 调整鼓励语模块样式 */
         #encouragementText {
             font-size: 1.5rem;
             font-weight: 600;
-            color: #ff7f50; /* 温暖的橙色 */
+            color: #ff7f50;
             margin-top: 20px;
             text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
             letter-spacing: 1px;
+            opacity: 0; /* 初始透明度为0 */
+            transition: opacity 1s ease-in-out;
         }
-
         #speakButton {
             margin-top: 30px;
             padding: 15px 30px;
@@ -66,12 +65,10 @@
             border-radius: 25px;
             transition: background-color 0.3s ease, transform 0.2s ease;
         }
-
         #speakButton:hover {
             background-color: #0056b3;
             transform: scale(1.05);
         }
-
         #speakButton:active {
             transform: scale(0.98);
         }
@@ -120,11 +117,20 @@
 <div class="container py-5" id="music-therapy">
     <h2 class="text-center section-title mb-4">养生音乐疗愈</h2>
     <div class="row">
-        <!-- 音乐疗愈卡片 -->
         <div class="col-md-4 acupoint">
             <img src="https://images.pexels.com/photos/29999123/pexels-photo-29999123.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load" alt="养生音乐疗愈" class="img-fluid rounded" id="musicImage" style="cursor: pointer;">
             <h3>音乐疗愈</h3>
             <p>点击图像即可播放养生音乐，带来舒缓放松效果。</p >
+        </div>
+    </div>
+</div>
+
+<!-- 情绪价值互动部分 -->
+<div class="container py-5">
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <button id="speakButton">你说吧</button>
+            <div id="encouragementText">我有话想对你说：你已经做得很好了，继续加油！</div>
         </div>
     </div>
 </div>
@@ -135,53 +141,77 @@
     您的浏览器不支持 audio 标签。
 </audio>
 
-<!-- JavaScript 代码 -->
+<!-- 模态框内容 -->
+<!-- 茶包的模态框1 -->
+<div class="modal fade" id="teaModal1" tabindex="-1" aria-labelledby="teaModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="teaModalLabel">安神助眠茶</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>这款茶包含了安神助眠的天然成分，适合在晚上饮用，帮助缓解压力和焦虑。</p >
+                <ul>
+                    <li>红枣：帮助安抚神经，促进睡眠</li>
+                    <li>枸杞：滋补肝肾，清热明目</li>
+                    <li>桂圆：补心安神，帮助入睡</li>
+                </ul>
+                < img src="https://images.pexels.com/photos/1638280/pexels-photo-1638280.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" class="img-fluid" alt="安神助眠茶">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 茶包的模态框2 -->
+<div class="modal fade" id="teaModal2" tabindex="-1" aria-labelledby="teaModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="teaModalLabel">舒缓解压茶</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>这款茶含有多种舒缓压力的成分，适合工作压力大的时候饮用，帮助缓解紧张情绪。</p >
+                <ul>
+                    <li>菊花：清热解毒，舒缓压力</li>
+                    <li>薄荷：清凉解暑，放松身体</li>
+                    <li>柠檬：提神醒脑，缓解疲劳</li>
+                </ul>
+                < img src="https://images.pexels.com/photos/9443525/pexels-photo-9443525.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" class="img-fluid" alt="舒缓解压茶">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap 5 JS -->
+<script src="https://cdn.bootcdn.net/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
 <script>
-    document.getElementById('musicImage').addEventListener('click', function() {
-        var audio = document.getElementById('audioPlayer');
-        audio.style.display = 'block';  // 显示音频播放器
-        audio.play();  // 播放音频
-    });
-
-    // 预设的鼓励语库
+    // 情绪鼓励语交互（我有话想对你说）
+    const speakButton = document.getElementById('speakButton');
+    const encouragementTextElement = document.getElementById('encouragementText');
     const encouragementMessages = [
-        "无论遇到什么困难，都要相信自己，你一定能够克服。",
-        "今天的努力，为明天的成功打下基础，加油！",
-        "每一次挑战都是成长的机会，你正在变得更加坚强。",
-        "相信自己，未来的你会感谢现在努力的自己。",
-        "不必急于一时，静下心来，你会发现前方的路依然明亮。",
-        "即使风雨再大，你也能撑起属于自己的晴空。",
-        "每天都是新的开始，给自己一次重新出发的机会。",
-        "勇敢走下去，成功就在不远处等你。",
-        "永远记得，阳光总在风雨后，你已经走得很远。",
-        "坚持下去，你就是最棒的！"
+        "我有话想对你说：你已经做得很好了，继续加油！",
+        "我有话想对你说：你今天非常努力，相信自己，未来一定光明！",
+        "我有话想对你说：你踏出的每一步都为你创造了更好的明天！"
     ];
-
-    // 随机生成一条鼓励语并显示
-    document.getElementById('speakButton').addEventListener('click', function() {
-        const randomIndex = Math.floor(Math.random() * encouragementMessages.length);
-        const message = encouragementMessages[randomIndex];
-        
-        // 渐变显示效果
-        const encouragementTextElement = document.getElementById('encouragementText');
-        encouragementTextElement.textContent = message;
+    speakButton.addEventListener('click', function() {
+        const randomMessage = encouragementMessages[Math.floor(Math.random() * encouragementMessages.length)];
+        encouragementTextElement.textContent = randomMessage;
         encouragementTextElement.style.opacity = '0';  // 初始透明度为0
         setTimeout(function() {
             encouragementTextElement.style.opacity = '1';  // 逐渐显示
         }, 100);
     });
 
-    // 播放指定的音乐视频
+    // 音频播放（隐藏音频播放器）
     function playVideo(url) {
-        const videoElement = document.createElement('video');
-        videoElement.src = url;
-        videoElement.controls = true;
-        videoElement.autoplay = true;
-        document.body.appendChild(videoElement);
+        const audioPlayer = document.getElementById('audioPlayer');
+        audioPlayer.src = url;
+        audioPlayer.play();
     }
 </script>
 
-<!-- Bootstrap 5 JS -->
-<script src="https://cdn.bootcdn.net/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
