@@ -118,7 +118,7 @@
     <h2 class="text-center section-title mb-4">养生音乐疗愈</h2>
     <div class="row">
         <div class="col-md-4 acupoint">
-            <img src="https://images.pexels.com/photos/29999123/pexels-photo-29999123.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load" alt="养生音乐疗愈" class="img-fluid rounded" id="musicImage" style="cursor: pointer;">
+            <img src="https://images.pexels.com/photos/29999123/pexels-photo-29999123.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load" alt="养生音乐疗愈" class="img-fluid rounded" id="musicImage" style="cursor: pointer;" onclick="playMusic('https://music-1341782462.cos.ap-guangzhou.myqcloud.com/Inspiration.mp3')">
             <h3>音乐疗愈</h3>
             <p>点击图像即可播放养生音乐，带来舒缓放松效果。</p >
         </div>
@@ -157,7 +157,7 @@
                     <li>枸杞：滋补肝肾，清热明目</li>
                     <li>桂圆：补心安神，帮助入睡</li>
                 </ul>
-                < img src="https://images.pexels.com/photos/1638280/pexels-photo-1638280.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" class="img-fluid" alt="安神助眠茶">
+                <img src="https://images.pexels.com/photos/1638280/pexels-photo-1638280.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" class="img-fluid" alt="安神助眠茶">
             </div>
         </div>
     </div>
@@ -178,7 +178,7 @@
                     <li>薄荷：清凉解暑，放松身体</li>
                     <li>柠檬：提神醒脑，缓解疲劳</li>
                 </ul>
-                < img src="https://images.pexels.com/photos/9443525/pexels-photo-9443525.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" class="img-fluid" alt="舒缓解压茶">
+                <img src="https://images.pexels.com/photos/9443525/pexels-photo-9443525.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" class="img-fluid" alt="舒缓解压茶">
             </div>
         </div>
     </div>
@@ -188,6 +188,13 @@
 <script src="https://cdn.bootcdn.net/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 
 <script>
+    // 更新播放音乐的函数
+    function playMusic(url) {
+        const audioPlayer = document.getElementById('audioPlayer');
+        audioPlayer.src = url;
+        audioPlayer.play();
+    }
+
     // 情绪鼓励语交互（我有话想对你说）
     const speakButton = document.getElementById('speakButton');
     const encouragementTextElement = document.getElementById('encouragementText');
@@ -205,12 +212,6 @@
         }, 100);
     });
 
-    // 音频播放（隐藏音频播放器）
-    function playVideo(url) {
-        const audioPlayer = document.getElementById('audioPlayer');
-        audioPlayer.src = url;
-        audioPlayer.play();
-    }
 </script>
 
 </body>
